@@ -4,7 +4,6 @@ const app = express();
 
 
 // routing => send response to specific kind of request [GET + POST]
-
 // GET REQUESTS--------
 app.get("/" , (req , res) => {
     res.send("You made get request on root path.")
@@ -31,7 +30,7 @@ app.get("/:username/:id" , (req , res) => {
 app.get("/query" , (req , res) => {
     // console.log(req.query);
     let { q } = req.query
-    res.send(`You made get request on query strings path with query ${q}`)
+    res.send(`You made get request on query path with query ${q}`)
 })
 
 // for NOT Found route 
