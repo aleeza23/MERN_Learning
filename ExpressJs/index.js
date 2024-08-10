@@ -23,7 +23,7 @@ app.get("/help" , (req , res) => {
 app.get("/:username/:id" , (req , res) => {
     // console.log(req.params);
     let {username , id } = req.params
-    res.send(`You made get request on root path with param ${username + id}`)
+    res.send(`You made get request on root path with param ${username} and ${id}`)
 })
 
 // dynamic route with query string => path to send query: http://localhost:3000/query?q=aleeza&uni=vu
