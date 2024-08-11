@@ -1,1 +1,1 @@
-This dir will conatin all frontend part.
+This dir will contain all frontend part.
