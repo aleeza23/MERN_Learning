@@ -1,0 +1,25 @@
+<%- include("includes/head.ejs") %>
+
+    <title>Random Num Generator</title>
+  </head>
+  <body>
+    <!-- TO DISPLAY VARIBALE USE <%= %> -->
+    <!-- TO USE CONTROL STATEMENTS  <% %> -->
+    <!-- TO USE LOOP <%  %> -->
+
+    <!-- LOOP -->
+    <h1>
+      Numbers list: <% for(let n of numList){ %>
+      <li><%= n %></li>
+      <% } %>
+    </h1>
+
+    <!-- VARIABLES -->
+    <h1>Random Number Generator: <%= data %></h1>
+
+    <!-- CONDITIONS -->
+    <% if(data == 4) { %>
+    <strong>Great! Generate Number again. </strong>
+    <% } %>
+  </body>
+</html>

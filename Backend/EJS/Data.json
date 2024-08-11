@@ -1,0 +1,97 @@
+{
+  "aleeza": {
+    "name": "Aleeza",
+    "followers": 12000,
+    "following": 180,
+    "profile": "https://avatars.githubusercontent.com/u/130530849?v=4",
+    "posts": [
+      {
+        "image": "https://quotefancy.com/media/wallpaper/3840x2160/8119915-Felienne-Hermans-Quote-Confusion-is-part-of-programming.jpg",
+        "likes": 350,
+        "comments": 22
+      },
+      {
+        "image": "https://quotefancy.com/media/wallpaper/3840x2160/2000881-Joel-Spolsky-Quote-It-s-harder-to-read-code-than-to-write-it.jpg",
+        "likes": 550,
+        "comments": 34
+      },
+      {
+        "image": "https://i.pinimg.com/736x/82/a0/5d/82a05d2a147c1a4457ba124a545d4112.jpg",
+        "likes": 780,
+        "comments": 49
+      }
+    ]
+  },
+  "umber": {
+    "name": "Umber",
+    "followers": 30000,
+    "following": 75,
+    "profile": "https://img.freepik.com/premium-photo/beautiful-muslim-yung-girl-hijab-avatar-illustrated-icon_1020867-83672.jpg",
+
+    "posts": [
+      {
+        "image": "https://quotefancy.com/media/wallpaper/3840x2160/7066557-Linus-Torvalds-Quote-Bad-programmers-worry-about-the-code-Good.jpg",
+        "likes": 420,
+        "comments": 30
+      },
+      {
+        "image": "https://i.pinimg.com/736x/e0/3e/db/e03edbe588d3866d539e5bbb35d9080c.jpg",
+        "likes": 600,
+        "comments": 45
+      },
+      {
+        "image": "https://wallpapers.com/images/hd/coding-inspirational-quote-pfuj3njhxxcd1ugk.jpg",
+        "likes": 900,
+        "comments": 60
+      }
+    ]
+  },
+  "irha": {
+    "name": "Irha",
+    "followers": 22000,
+    "following": 50,
+    "profile": "https://i.pinimg.com/474x/27/5c/51/275c51f3396bb330c6dc1cc427c5e622.jpg",
+
+    "posts": [
+      {
+        "image": "https://e1.pxfuel.com/desktop-wallpaper/713/1004/desktop-wallpaper-programming-quotes-inspiring-quotesgram-coding-motivation.jpg",
+        "likes": 700,
+        "comments": 25
+      },
+      {
+        "image": "https://www.bhmpics.com/downloads/motivational-quotes-for-desktop-wallpaper-/17.481965.jpg",
+        "likes": 500,
+        "comments": 18
+      },
+      {
+        "image": "https://images.hdqwalls.com/download/motivation-typography-1366x768.jpg",
+        "likes": 300,
+        "comments": 15
+      }
+    ]
+  },
+  "amna": {
+    "name": "Amna",
+    "followers": 50000,
+    "following": 200,
+    "profile": "https://img.freepik.com/free-photo/view-3d-woman-wearing-hijab_23-2151112551.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1723161600&semt=ais_hybrid",
+
+    "posts": [
+      {
+        "image": "https://wallpapers.com/images/hd/1920x1080-hd-coding-qbj6kohx5exo46ns.jpg",
+        "likes": 900,
+        "comments": 60
+      },
+      {
+        "image": "https://c4.wallpaperflare.com/wallpaper/792/460/915/code-coding-programming-simple-background-wallpaper-preview.jpg",
+        "likes": 1500,
+        "comments": 80
+      },
+      {
+        "image": "https://i.pinimg.com/originals/9d/2b/04/9d2b04a381fe509b5f19f26dba6b1d1c.jpg",
+        "likes": 2000,
+        "comments": 120
+      }
+    ]
+  }
+}
