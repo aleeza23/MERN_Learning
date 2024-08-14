@@ -6,23 +6,33 @@
     "profile": "https://avatars.githubusercontent.com/u/130530849?v=4",
     "posts": [
       {
+        "id": "1",
         "image": "https://quotefancy.com/media/wallpaper/3840x2160/8119915-Felienne-Hermans-Quote-Confusion-is-part-of-programming.jpg",
         "likes": 350,
-        "comments": 22
+        "comments": 22,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       },
       {
+        "id": "2",
         "image": "https://quotefancy.com/media/wallpaper/3840x2160/2000881-Joel-Spolsky-Quote-It-s-harder-to-read-code-than-to-write-it.jpg",
         "likes": 550,
-        "comments": 34
+        "comments": 34,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       },
       {
+        "id": "3",
         "image": "https://i.pinimg.com/736x/82/a0/5d/82a05d2a147c1a4457ba124a545d4112.jpg",
         "likes": 780,
-        "comments": 49
+        "comments": 49,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       }
     ]
   },
   "umber": {
+    
     "name": "Umber",
     "followers": 30000,
     "following": 75,
@@ -30,23 +40,31 @@
 
     "posts": [
       {
+        "id": "1",
         "image": "https://quotefancy.com/media/wallpaper/3840x2160/7066557-Linus-Torvalds-Quote-Bad-programmers-worry-about-the-code-Good.jpg",
         "likes": 420,
-        "comments": 30
+        "comments": 30,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       },
       {
+        "id": "2",
         "image": "https://i.pinimg.com/736x/e0/3e/db/e03edbe588d3866d539e5bbb35d9080c.jpg",
         "likes": 600,
-        "comments": 45
+        "comments": 45,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       },
       {
+        "id": "3",
         "image": "https://wallpapers.com/images/hd/coding-inspirational-quote-pfuj3njhxxcd1ugk.jpg",
         "likes": 900,
-        "comments": 60
+        "comments": 60,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       }
     ]
   },
   "irha": {
+    
     "name": "Irha",
     "followers": 22000,
     "following": 50,
@@ -54,19 +72,28 @@
 
     "posts": [
       {
+        "id": "1",
         "image": "https://e1.pxfuel.com/desktop-wallpaper/713/1004/desktop-wallpaper-programming-quotes-inspiring-quotesgram-coding-motivation.jpg",
         "likes": 700,
-        "comments": 25
+        "comments": 25,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       },
       {
+        "id": "2",
         "image": "https://www.bhmpics.com/downloads/motivational-quotes-for-desktop-wallpaper-/17.481965.jpg",
         "likes": 500,
-        "comments": 18
+        "comments": 18,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       },
       {
+        "id": "3",
         "image": "https://images.hdqwalls.com/download/motivation-typography-1366x768.jpg",
         "likes": 300,
-        "comments": 15
+        "comments": 15,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       }
     ]
   },
@@ -78,19 +105,28 @@
 
     "posts": [
       {
+        "id": "1",
         "image": "https://wallpapers.com/images/hd/1920x1080-hd-coding-qbj6kohx5exo46ns.jpg",
         "likes": 900,
-        "comments": 60
+        "comments": 60,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       },
       {
+        "id": "2",
         "image": "https://c4.wallpaperflare.com/wallpaper/792/460/915/code-coding-programming-simple-background-wallpaper-preview.jpg",
         "likes": 1500,
-        "comments": 80
+        "comments": 80,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       },
       {
+        "id": "3",
         "image": "https://i.pinimg.com/originals/9d/2b/04/9d2b04a381fe509b5f19f26dba6b1d1c.jpg",
         "likes": 2000,
-        "comments": 120
+        "comments": 120,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+
       }
     ]
   }
