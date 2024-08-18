@@ -1,0 +1,34 @@
+TO SETUP THE EXPRESS APP
+
+-> INSTALL EXPRESS
+
+-> IN APP REQUIRE EXPRESS
+    const express = require("express");
+    const app = express();
+
+
+-> TO GET URL ENCODED DATA AND JSON DATA FROM CLIENT TO EXPRESS SERVER ADD THESE TWO LINES IN APP
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false })); 
+
+
+-> IF USING EJS TEPLETING SET DIRECTORY ROOT WHEREE VIEWS FOLDER EXITS BY ADD THESE TWO LINES
+    const path = require("path")             // FIRST REQUIRE THE PATH PACKAGE NO NEED TO INSTALL IT        
+    app.set("view engine", "ejs")           // EXPRESS INTERNALLY REQUIRE EJS PACKAGE SO DON'T NEED TO REQUIRE IT AT TOP
+    app.set("views", path.join(__dirname, "/views"))
+
+
+-> TO ACCEPT PUT/PATCH REQUESTS FROM CLIENT SENDING IN FORM OF POST/GET REQUESTS USE METHOD OVERIDE PACKAGE TO ACCEPT PUT/PATCH REQUESTS
+    const methodOverride = require('method-override')    // INSTALL METHOD OVERIDE PACKAGE & REQUIRE IT IN APP  
+    app.use(methodOverride('_method'))                // override with POST having ?_method=PUT  
+
+
+*********ADDITIONAL HELPFUL PACKAGES*********
+TO GENERATE RANDOM ID
+-> INSTALL UUID PACKAGE & REQUIRE BY ADDING THIS LINES IN APP
+    const { uuid } = require('uuidv4');
+
+
+TO GET RANDOM DATA
+-> INSTALL FAKER PACKAGE & REQUIRE BY ADDING THIS LINES IN APP    
+    const { faker } = require('@faker-js/faker');

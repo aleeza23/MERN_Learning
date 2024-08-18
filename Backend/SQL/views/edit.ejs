@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Username</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 80px 0;
+        padding: 20px;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+
+      .form-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h2 {
+        margin-bottom: 20px;
+        color: #343a40;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #343a40;
+        font-weight: bold;
+      }
+
+      .form-group input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .form-group input[readonly] {
+        background-color: #f4f4f4;
+        cursor: not-allowed;
+      }
+
+      .form-group input:focus {
+        border-color: #343a40;
+        outline: none;
+      }
+
+      .form-group input[type="password"] {
+        font-family: monospace;
+        letter-spacing: 0.05em;
+      }
+
+      .form-actions {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .form-actions button {
+        background-color: #343a40;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .form-actions button:hover {
+        background-color: #495057;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <h2>Edit Username</h2>
+      <form action="/user/<%= user.id %>?_method=PATCH" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" value="<%= user.email %>" readonly />
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <textarea name="username" required><%= user.username %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password..."
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit">Update</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

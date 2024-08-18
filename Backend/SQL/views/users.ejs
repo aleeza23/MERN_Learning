@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Table</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .table-container {
+        width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 18px;
+        background-color: #fff;
+        text-align: left;
+      }
+
+      .styled-table thead tr {
+        background-color: #343a40;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .styled-table th,
+      .styled-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+
+      .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+
+      .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+
+      .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #343a40;
+      }
+
+      .styled-table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .edit-button,
+      .delete-button {
+        background-color: #343a40;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .edit-button:hover,
+      .delete-button:hover {
+        background-color: #495057;
+      }
+
+      .add-button-container {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .add-button {
+        background-color: #343a40;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .add-button:hover {
+        background-color: #495057;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="table-container">
+      <div class="add-button-container">
+        <form method="get" action="/user/add">
+          <button class="add-button" onclick="window.location.href='/user/new'">
+            Add New User
+          </button>
+        </form>
+      </div>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let user of users) { %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td>
+              <div class="action-buttons">
+                <form method="get" action="/user/<%= user.id %>/edit">
+                  <button class="edit-button">Edit</button>
+                </form>
+                <form
+                  method="post"
+                  action="/user/<%= user.id %>/delete?_method=DELETE"
+                >
+                  <button class="delete-button">Delete</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

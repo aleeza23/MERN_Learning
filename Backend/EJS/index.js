@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'))
 
 //CREATING ROUTES
+app.get("/", ((req, res) => {
+    res.render("main.ejs")
+}))
 
 // DISPLAY UERS PROFILE
 app.get("/instagram/:user", ((req, res) => {
