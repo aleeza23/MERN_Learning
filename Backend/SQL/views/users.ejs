@@ -105,7 +105,7 @@
     <div class="table-container">
       <div class="add-button-container">
         <form method="get" action="/user/add">
-          <button class="add-button" onclick="window.location.href='/user/new'">
+          <button class="add-button">
             Add New User
           </button>
         </form>
@@ -131,11 +131,12 @@
                   <button class="edit-button">Edit</button>
                 </form>
                 <form
-                  method="post"
-                  action="/user/<%= user.id %>/delete?_method=DELETE"
-                >
-                  <button class="delete-button">Delete</button>
-                </form>
+                method="get"
+                action="/user/<%= user.id %>/delete"
+                
+              >
+                <button class="delete-button">Delete</button>
+              </form>
               </div>
             </td>
           </tr>

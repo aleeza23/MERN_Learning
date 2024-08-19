@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New User</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delete Confirmation</title>
     <style>
         body {
             font-family: "Arial", sans-serif;
@@ -62,7 +62,7 @@
         }
 
         .form-actions button {
-            background-color: #343a40;
+            background-color: #e74c3c; /* Red button color */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -73,29 +73,39 @@
         }
 
         .form-actions button:hover {
-            background-color: #495057;
+            background-color: #c0392b; /* Darker red on hover */
+        }
+
+        .error-message {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8d7da; /* Light red for errors */
+            color: #721c24; /* Dark red for text */
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
 <div class="form-container">
-    <h2>Add New User</h2>
-    <form action="/user" method="post">
+    <h2>Delete Your Account</h2>
+    <% if (errorMessage) { %>
+        <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+    <form action="/user/<%= user.id %>?_method=DELETE" method="post">
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email"  name="email" required placeholder="Enter email..."/>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
         </div>
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" required  placeholder="Enter username..."/>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password"  name="password" required placeholder="Enter password..." />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
         </div>
         <div class="form-actions">
-            <button type="submit">Add User</button>
+            <button type="submit">Confirm Delete</button>
         </div>
     </form>
 </div>

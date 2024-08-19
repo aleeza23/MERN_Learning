@@ -4,6 +4,8 @@ const path = require("path")
 const mysql = require('mysql2');
 const { faker } = require('@faker-js/faker');
 const methodOverride = require('method-override')
+const { uuid } = require('uuidv4');
+const { log } = require("console");
 
 //SET VIEWS
 app.set("view engine", "ejs")
@@ -20,7 +22,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'record',
-    password: 'aleezaSQL@12',
+    // password: 'Your SQL password here',
 });
 
 //INSERTING DATA WITH PLACEHOLDER TO PASS VALUES DYNAMICALLY
@@ -113,7 +115,7 @@ app.get("/user/:id/edit", (req, res) => {
         connection.query(q, (err, result) => {
             if (err) throw err;
             let user = result[0]
-            res.render("edit.ejs", { user })
+            res.render("edit.ejs", { user, errorMessage : "" })
         })
     } catch (err) {
         console.log(err);
@@ -132,7 +134,7 @@ app.patch("/user/:id", (req, res) => {
             if (err) throw err;
             let user = result[0]
             if (formPass != user.password) {
-                res.send("ENTERED WRONG PASSWORD!")
+                res.render("edit.ejs", {user, errorMessage : "Entered wrong password."})
             } else {
                 // WRITE A QUERY TO UPDATE USERNAME IN DB
                 let q2 = `UPDATE user SET username='${newUsername}' WHERE id='${id}'`
@@ -148,14 +150,41 @@ app.patch("/user/:id", (req, res) => {
     }
 })
 
+
+//ADD USER FORM
+app.get("/user/add", (req, res) => {
+    res.render("adduser.ejs")
+})
+
+
+//POST REQUEST TO ADD USER TO DB
+app.post("/user", (req, res) => {
+    const id = uuid()
+    const { email, username, password } = req.body;
+    let userInfo = [id, username, email, password];
+
+    //QUERY TO ADD USER IN DB
+    let q = `INSERT INTO user (id, username, email, password) VALUES (?, ?, ?, ?)`;
+    try {
+        connection.query(q, userInfo, (err, result) => {
+            if (err) throw err;
+            res.redirect("/user")
+        })
+    } catch (err) {
+        res.send("Some error in adding user.");
+    }
+})
+
+
 //DELETE REQUEST TO DEL USER
-app.delete("/user/:id/delete", (req, res) => {
-    const {id} = req.params;
-    let q = `DELETE FROM user WHERE id='${id}'`;
+app.get("/user/:id/delete", (req, res) => {
+    const { id } = req.params;
+    let q = `SELECT * FROM user WHERE id='${id}'`;
     try {
         connection.query(q, (err, result) => {
             if (err) throw err;
-            res.redirect("/user")
+            let user = result[0]
+            res.render("deleteUser.ejs", { user, errorMessage : "" })
         })
     } catch (err) {
         console.log(err);
@@ -164,10 +193,33 @@ app.delete("/user/:id/delete", (req, res) => {
 })
 
 
-//ADD USER FORM
-app.get("/user/add", (req, res) => {
-    res.render("adduser.ejs")
+//DELETE REQUEST TO DEL USER
+app.delete("/user/:id", (req, res) => {
+    const { id } = req.params;
+    const { email, password } = req.body
+    //QUERY TO SELECT USER WITH SPECIFIC ID
+    let q = `SELECT * FROM user WHERE id='${id}'`;
+    try {
+        connection.query(q, (err, result) => {
+            if (err) throw err;
+            let user = result[0]
+            if (user.email != email && user.password != password) {
+                res.render("deleteUser.ejs", {user, errorMessage : "Incorrect email or password."})
+            } else {
+                // QUERY FOR DELETE
+                let q2 = `DELETE FROM user WHERE id='${id}'`;
+                connection.query(q2, (err, result) => {
+                    if (err) throw err;
+                    res.redirect("/user")
+                })
+            }
+        })
+    } catch (err) {
+        console.log(err);
+        res.send("Error in DB.")
+    }
 })
+
 
 app.listen("8080", () => {
     console.log("App is running on port 8080");
