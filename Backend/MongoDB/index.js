@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const main = async () => {
-    await mongoose.connect('mongodb://127.0.0.1:27017/test');
+    await mongoose.connect('Your connection string here');
 }
 
 main().then((res) => {
