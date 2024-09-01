@@ -32,3 +32,6 @@ TO GENERATE RANDOM ID
 TO GET RANDOM DATA
 -> INSTALL FAKER PACKAGE & REQUIRE BY ADDING THIS LINES IN APP    
     const { faker } = require('@faker-js/faker');
+
+
+

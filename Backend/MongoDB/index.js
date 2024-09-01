@@ -111,9 +111,8 @@ User.insertMany([
     console.log(res);
 })
 
-
 //CREATE AN OBJECT OF MODEL CLASS AND INSERT A SINGLE DOCUMENTS IN USER COLLECTION
-const user2 = new User({
+const user = new User({
     name: "rubab",
     username: "rubab_98",
     email: "rubab65@gmail.com",
@@ -122,7 +121,7 @@ const user2 = new User({
 
 
 //TO SAVE SINGLE DOCUMENT IN DB
-user2.save().then((res) => {
+user.save().then((res) => {
     console.log(res);
 }).catch((err) => {
     console.log(err);

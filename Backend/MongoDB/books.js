@@ -44,7 +44,7 @@ Book.findByIdAndUpdate('66ca1ddca2c6cfb0b5f9e3d0', { price: -500 }, { runValidat
 })
 
 const book1 = new Book({
-    title: "aleeza book2",
+    title: "book-one",
     author: "aleeza rubab",
     price: "10",
     // category : "comics" // WILL THROW AN ERROR BCZ COMICS IS NOT IN ENUM CATEGORY

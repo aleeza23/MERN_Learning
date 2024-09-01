@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Chat</title>
+
+    <!-- Include this CSS within the <style> block -->
+    <style>
+      /* Form styles */
+
+      .form-container {
+        background: rgba(0, 0, 0, 0.8); /* Dark background for the form */
+        padding: 20px;
+        padding-right: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to form */
+        width: 100%;
+        max-width: 500px; /* Max width for the form */
+        margin: 70px auto; /* Center the form */
+      }
+
+      .form-container h2 {
+        margin: 0 0 20px;
+        font-size: 1.5em;
+        color: #fff;
+      }
+
+      .form-details {
+        margin-bottom: 20px;
+        color: #fff;
+        font-size: 1.1em;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 30px;
+        color: #fff;
+      }
+
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #0072ff;
+        border-radius: 5px;
+        background: rgba(
+          255,
+          255,
+          255,
+          0.2
+        ); /* Light background for textarea */
+        color: #fff;
+        font-size: 1em;
+        resize: vertical; /* Allow vertical resizing */
+      }
+
+      .form-group textarea:focus {
+        border-color: #0056b3;
+        outline: none;
+      }
+
+      .submit-btn {
+        background: #0072ff; /* Matching button color */
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-size: .8em;
+      }
+
+      .submit-btn:hover {
+        background: #0056b3; /* Darker shade on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Add this HTML before the closing </body> tag -->
+    <!-- Edit Chat Form HTML -->
+    <div class="form-container">
+      <h2>Edit Chat</h2>
+      <div class="form-details">
+        <p><strong>ID:</strong > <%= chat._id %></p>
+        <p><strong>From:</strong> <%= chat.from %></p>
+        <p><strong>To:</strong> <%= chat.to %></p>
+      </div>
+      <form id="edit-chat-form" action="/chats/<%= chat._id %>?_method=PUT" method="post">
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea
+            placeholder="Enter your message..."
+            name="msg"
+            rows="4"
+            required
+          ><%= chat.msg %>
+          </textarea>
+        </div>
+        <button type="submit" class="submit-btn">Save Changes</button>
+      </form>
+    </div>
+  </body>
+</html>
