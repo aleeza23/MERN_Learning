@@ -5,6 +5,10 @@ const path = require("path")
 var methodOverride = require('method-override')
 const Listing = require("./models/listing")
 const ejsMate = require("ejs-mate")
+const WrapAsync = require("./utils/WrapAsync.js")
+const ExpressError = require("./utils/ExpressError.js")
+const listingSchema = require("./ServerSchemaValid.js")
+
 
 //SETUP MONGOOSE
 const main = async () => {
@@ -28,12 +32,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 app.engine('ejs', ejsMate);
 
+//MIDDLEWARE FOR VALIDATING LISTING SCHEMA
+const validateListing = (req, res, next) => {
+    let { error } = listingSchema.validate(req.body) //JOI WILL VALIDATE ALL THE REQUIRED INFO IS PRESENT TO STORE IN DB 
+    if (error) {
+        throw new ExpressError(400, error)
+    } else {
+        next()
+    }
+}
+
 
 //INDEX ROUTE
-app.get("/listings", async (req, res) => {
+app.get("/listings", WrapAsync(async (req, res) => {
     const response = await Listing.find()
     res.render("listings/index.ejs", { response })
-})
+}))
 
 //CREATE NEW LIST ROUTE
 app.get("/listings/new", (req, res) => {
@@ -41,63 +55,56 @@ app.get("/listings/new", (req, res) => {
 })
 
 //SHOW ROUTE
-app.get("/listings/:id", async (req, res) => {
+app.get("/listings/:id", WrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id)
     res.render("listings/show.ejs", { listing })
-})
+}))
 
 //CREATE ROUTE
-app.post("/listings", async (req, res) => {
+app.post("/listings", validateListing, WrapAsync(async (req, res, next) => {
     let { listing } = req.body
     const newListing = new Listing(listing)
     await newListing.save()
     res.redirect("/listings")
-})
+}))
 
 // EDIT LISTING ROUTE
-app.get("/listings/:id/edit", async (req, res) => {
+app.get("/listings/:id/edit", WrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id)
     res.render("listings/edit.ejs", { listing })
-})
+}))
 
 //UPDATE ROUTE
-app.put("/listings/:id", async (req, res) => {
+app.put("/listings/:id", validateListing, WrapAsync(async (req, res) => {
     let { id } = req.params;
-    let { listing } = req.body;    
+    let { listing } = req.body;
     const updated = await Listing.findByIdAndUpdate(id, { ...listing }, { runValidators: true, new: true });
     res.redirect(`/listings/${id}`)
-})
+}))
 
 //DELETE ROUTE
-app.delete("/listings/:id", async (req, res) => {
+app.delete("/listings/:id", WrapAsync(async (req, res) => {
     const { id } = req.params;
     await Listing.findByIdAndDelete(id)
     res.redirect("/listings")
+}))
+
+//404
+app.all("*", (req, res, next) => {
+    next(new ExpressError(404, "Page Not Found!"))
+})
+
+
+//DEFINING MIDDLEWARE TO HANDLE ADDING INCORRECT INFO IN DB
+app.use((err, req, res, next) => {
+    let { status = 500, message = "Something went wrong!" } = err;
+    res.status(status).render("error.ejs", { message })
+    // res.status(status).send(message)
 })
 
 
 app.listen("8000", () => {
     console.log("Server running on port 8000");
 })
-
-
-
-
-
-// app.get("/testListing", async (req, res) => {
-//     const sampleListing = new Listing({
-//         title: 'new home',
-//         description: "hey this is your new home",
-//         price: 20000,
-//         location: "chakwal",
-//         country: "pakistan"
-//     })
-
-//     //save into listing collection
-//     await sampleListing.save()
-//     console.log("sample ws saved");
-//     res.send("success")
-// })
-
