@@ -117,3 +117,27 @@ margin-bottom: 2rem;
 .show-img {
     height: 35vh;
 }
+
+/* RATING STARS */
+.star-rating {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.star-rating .fa-star {
+    font-size: 24px;
+    color: grey;
+    transition: color 0.3s;
+}
+
+.star-rating .fa-star.selected,
+.star-rating .fa-star:hover,
+.star-rating .fa-star:hover ~ .fa-star {
+    color: yellow;
+    fill: yellow;
+}
+.rating-color {
+    color: rgb(251, 226, 3);
+}
+
