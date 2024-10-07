@@ -41,4 +41,4 @@ To explore my projects:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mern-learning.git
+   git clone https://github.com/aleeza23/MERN_Learning.git
