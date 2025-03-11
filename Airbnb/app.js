@@ -3,14 +3,12 @@ const app = express()
 const mongoose = require('mongoose');
 const path = require("path")
 var methodOverride = require('method-override')
-const Listing = require("./models/listing")
-const Review = require("./models/reviews.js")
 const ejsMate = require("ejs-mate")
-const WrapAsync = require("./utils/WrapAsync.js")
-const ExpressError = require("./utils/ExpressError.js")
-const listingSchema = require("./ServerSchemaValid.js")
-const reviewSchema = require("./ServerSchemaValid.js")
-
+const listings = require("./routes/listing.js")
+const reviews = require("./routes/review.js")
+const session = require("express-session")
+const flash = require("connect-flash");
+const ExpressError = require("./utils/ExpressError.js");
 
 //SETUP MONGOOSE
 const main = async () => {
@@ -34,97 +32,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 app.engine('ejs', ejsMate);
 
-//MIDDLEWARE FOR VALIDATING SCHEMAS
-const validateListing = (req, res, next) => {
-    let { error } = listingSchema.validate(req.body) //JOI WILL VALIDATE ALL THE REQUIRED INFO IS PRESENT TO STORE IN DB 
-    if (error) {
-        throw new ExpressError(400, error)
-    } else {
-        next()
+
+const sessionOptions = {
+    secret: "mysecretsuperkey",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
     }
 }
-
-const validateReview = (req, res, next) => {
-    let { error } = reviewSchema.validate(req.body) //JOI WILL VALIDATE ALL THE REQUIRED INFO IS PRESENT TO STORE IN DB 
-    if (error) {
-        throw new ExpressError(400, error)
-    } else {
-        next()
-    }
-}
-
-
-//INDEX ROUTE
-app.get("/listings", WrapAsync(async (req, res) => {
-    const response = await Listing.find()
-    res.render("listings/index.ejs", { response })
-}))
-
-//CREATE NEW LIST ROUTE
-app.get("/listings/new", (req, res) => {
-    res.render("listings/new.ejs")
+app.use(session(sessionOptions))
+app.use(flash())
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    next()
 })
 
-//SHOW ROUTE
-app.get("/listings/:id", WrapAsync(async (req, res) => {
-    let { id } = req.params;
-    const listing = await Listing.findById(id).populate("reviews")
-    res.render("listings/show.ejs", { listing })
-}))
+app.use("/listings", listings)
+app.use("/listings/:id/reviews", reviews)
 
-//CREATE ROUTE
-app.post("/listings", validateListing, WrapAsync(async (req, res, next) => {
-    let { listing } = req.body
-    const newListing = new Listing(listing)
-    await newListing.save()
-    res.redirect("/listings")
-}))
-
-// EDIT LISTING ROUTE
-app.get("/listings/:id/edit", WrapAsync(async (req, res) => {
-    let { id } = req.params;
-    const listing = await Listing.findById(id)
-    res.render("listings/edit.ejs", { listing })
-}))
-
-//UPDATE ROUTE
-app.put("/listings/:id", validateListing, WrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let { listing } = req.body;
-    const updated = await Listing.findByIdAndUpdate(id, { ...listing }, { runValidators: true, new: true });
-    res.redirect(`/listings/${id}`)
-}))
-
-//DELETE ROUTE
-app.delete("/listings/:id", WrapAsync(async (req, res) => {
-    const { id } = req.params;
-    await Listing.findByIdAndDelete(id)
-    res.redirect("/listings")
-}))
-
-// ************* REVIEWS ROUTES *************
-
-//POST REVIEW ROUTE
-app.post("/listings/:id/reviews", validateReview, WrapAsync(async (req, res) => {
-
-    let listing = await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review)
-
-    listing.reviews.push(newReview)
-    await newReview.save();
-    await listing.save();
-
-    res.redirect(`/listings/${listing._id}`)
-}))
-
-//DELETE REVIEW ROUTE
-app.delete("/listings/:id/reviews/:reviewId", WrapAsync(async (req, res) => {
-    let { id, reviewId } = req.params;
-    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId }})
-    await Review.findByIdAndDelete(reviewId)
-
-    res.redirect(`/listings/${id}`)
-}))
 
 //404
 app.all("*", (req, res, next) => {
