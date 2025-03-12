@@ -4,7 +4,7 @@ const WrapAsync = require("../utils/WrapAsync.js")
 const ExpressError = require("../utils/ExpressError.js")
 const Listing = require("../models/listing")
 const Review = require("../models/reviews.js");
-const reviewSchema = require("../ServerSchemaValid.js");
+const { reviewSchema } = require("../ServerSchemaValid.js");
 
 const validateReview = (req, res, next) => {
     let { error } = reviewSchema.validate(req.body) //JOI WILL VALIDATE ALL THE REQUIRED INFO IS PRESENT TO STORE IN DB 
@@ -23,6 +23,7 @@ router.post("/", validateReview, WrapAsync(async (req, res) => {
     await newReview.save();
     await listing.save();
 
+    req.flash("success", "New Review Created!")
     res.redirect(`/listings/${listing._id}`)
 }))
 
@@ -32,6 +33,7 @@ router.delete("/:reviewId", WrapAsync(async (req, res) => {
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)
 
+    req.flash("success", "Review Deleted!")
     res.redirect(`/listings/${id}`)
 }))
 
