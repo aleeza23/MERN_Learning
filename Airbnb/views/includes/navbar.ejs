@@ -15,9 +15,23 @@
 
             <div class="navbar-nav ms-auto">
                 <form class="d-flex gap-3 justify-content-center align-items-center" role="search">
-                    <a class="nav-link rounded-pill airbnb" href="/">Airbnb your home </a>
+                    <a class="nav-link rounded-pill airbnb" href="/">Airbnb your home</a>
                     <i class="fa-solid fa-globe"></i>
-                    <a href="/signup" class=" search-btn" type="submit"><i class="fa-solid fa-user"></i></a>
+                    <div class="dropdown">
+                        <a href="#" class="search-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end mt-3">
+                            <% if(!currUser) { %>
+                                <li><a class="dropdown-item" href="/login">Login</a></li>
+                                <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
+                                <% } %>
+                                    <% if(currUser) { %>
+                                        <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+                                        <% } %>
+
+                        </ul>
+                    </div>
                 </form>
             </div>
 

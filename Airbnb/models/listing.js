@@ -19,7 +19,11 @@ const listingSchema = new Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Review"
         }
-    ]
+    ],
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 })
 
 //post middleware to delete reviews from review model when delete a list

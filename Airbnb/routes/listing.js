@@ -4,6 +4,7 @@ const WrapAsync = require("../utils/WrapAsync");
 const Listing = require("../models/listing");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema } = require("../ServerSchemaValid.js");
+const { isLoggedIn } = require("../middleware.js");
 
 
 //MIDDLEWARE FOR VALIDATING SCHEMAS
@@ -23,24 +24,25 @@ router.get("/", WrapAsync(async (req, res) => {
 }))
 
 //CREATE NEW LIST ROUTE
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
+
     res.render("listings/new.ejs")
 })
 
 //SHOW ROUTE
-router.get("/:id", WrapAsync(async (req, res) => {
+router.get("/:id",  WrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id).populate("reviews")
 
     if (!listing) {
         req.flash("error", "Listing does not exist!")
-        return res.redirect("/listings"); 
+        return res.redirect("/listings");
     }
     res.render("listings/show.ejs", { listing })
 }))
 
 //CREATE ROUTE
-router.post("/", validateListing, WrapAsync(async (req, res, next) => {
+router.post("/", validateListing, isLoggedIn, WrapAsync(async (req, res, next) => {
     let { listing } = req.body;
     const newListing = new Listing(listing)
     await newListing.save()
@@ -50,13 +52,13 @@ router.post("/", validateListing, WrapAsync(async (req, res, next) => {
 }))
 
 // EDIT LISTING ROUTE
-router.get("/:id/edit", WrapAsync(async (req, res) => {
+router.get("/:id/edit", isLoggedIn, WrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id)
 
     if (!listing) {
         req.flash("error", "Listing does not exist!")
-        return res.redirect("/listings"); 
+        return res.redirect("/listings");
     }
     res.render("listings/edit.ejs", { listing })
 }))
@@ -72,7 +74,7 @@ router.put("/:id", validateListing, WrapAsync(async (req, res) => {
 }))
 
 //DELETE ROUTE
-router.delete("/:id", WrapAsync(async (req, res) => {
+router.delete("/:id", isLoggedIn, WrapAsync(async (req, res) => {
     const { id } = req.params;
     await Listing.findByIdAndDelete(id)
 
