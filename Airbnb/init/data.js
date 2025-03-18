@@ -7,6 +7,7 @@ const sampleListings = [
         price: 1500,
         location: "Malibu",
         country: "United States",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Modern Loft in Downtown",
@@ -16,6 +17,7 @@ const sampleListings = [
         price: 1200,
         location: "New York City",
         country: "United States",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Mountain Retreat",
@@ -25,6 +27,7 @@ const sampleListings = [
         price: 1000,
         location: "Aspen",
         country: "United States",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Historic Villa in Tuscany",
@@ -34,6 +37,7 @@ const sampleListings = [
         price: 2500,
         location: "Florence",
         country: "Italy",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Secluded Treehouse Getaway",
@@ -43,6 +47,7 @@ const sampleListings = [
         price: 800,
         location: "Portland",
         country: "United States",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Beachfront Paradise",
@@ -52,6 +57,7 @@ const sampleListings = [
         price: 2000,
         location: "Cancun",
         country: "Mexico",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Rustic Cabin by the Lake",
@@ -61,6 +67,7 @@ const sampleListings = [
         price: 900,
         location: "Lake Tahoe",
         country: "United States",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Luxury Penthouse with City Views",
@@ -70,6 +77,8 @@ const sampleListings = [
         price: 3500,
         location: "Los Angeles",
         country: "United States",
+        owner: '67d7c11de4ee45642ed2aa91'
+
     },
     {
         title: "Ski-In/Ski-Out Chalet",
@@ -79,6 +88,7 @@ const sampleListings = [
         price: 3000,
         location: "Verbier",
         country: "Switzerland",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Safari Lodge in the Serengeti",
@@ -88,6 +98,7 @@ const sampleListings = [
         price: 4000,
         location: "Serengeti National Park",
         country: "Tanzania",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Historic Canal House",
@@ -97,6 +108,7 @@ const sampleListings = [
         price: 1800,
         location: "Amsterdam",
         country: "Netherlands",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Private Island Retreat",
@@ -106,6 +118,7 @@ const sampleListings = [
         price: 10000,
         location: "Fiji",
         country: "Fiji",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
     {
         title: "Charming Cottage in the Cotswolds",
@@ -115,7 +128,8 @@ const sampleListings = [
         price: 1200,
         location: "Cotswolds",
         country: "United Kingdom",
+        owner: '67d7c11de4ee45642ed2aa91'
     },
 ];
 
-module.exports = {data : sampleListings}
+module.exports = { data: sampleListings }
