@@ -5,6 +5,7 @@ const ExpressError = require("../utils/ExpressError.js")
 const Listing = require("../models/listing")
 const Review = require("../models/reviews.js");
 const { reviewSchema } = require("../ServerSchemaValid.js");
+const { isLoggedIn, isAuthor } = require("../middleware.js");
 
 const validateReview = (req, res, next) => {
     let { error } = reviewSchema.validate(req.body) //JOI WILL VALIDATE ALL THE REQUIRED INFO IS PRESENT TO STORE IN DB 
@@ -15,10 +16,10 @@ const validateReview = (req, res, next) => {
     }
 }
 //POST REVIEW ROUTE
-router.post("/", validateReview, WrapAsync(async (req, res) => {
+router.post("/", isLoggedIn, validateReview, WrapAsync(async (req, res) => {
     let listing = await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review)
-
+    let newReview = new Review(req.body.review);
+    newReview.author = req.user._id;
     listing.reviews.push(newReview)
     await newReview.save();
     await listing.save();
@@ -28,7 +29,7 @@ router.post("/", validateReview, WrapAsync(async (req, res) => {
 }))
 
 //DELETE REVIEW ROUTE
-router.delete("/:reviewId", WrapAsync(async (req, res) => {
+router.delete("/:reviewId", isAuthor, WrapAsync(async (req, res) => {
     let { id, reviewId } = req.params;
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)
