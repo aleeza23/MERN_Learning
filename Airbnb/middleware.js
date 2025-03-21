@@ -33,7 +33,6 @@ module.exports.validateListing = (req, res, next) => {
 module.exports.isAuthor = async (req, res, next) => {
     let { id, reviewId } = req.params;
     let review = await Review.findById(reviewId);
-    console.log('rev', review);
 
     if (!review.author._id.equals(res.locals.currUser._id)) {
         req.flash("error", "You are not the owner of this review!")
