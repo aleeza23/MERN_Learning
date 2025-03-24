@@ -9,10 +9,18 @@
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" href="/listings">All Listings</a>
+                <a class="nav-link" href="/listings">Explore</a>
                 <a class="nav-link" href="/listings/new">Add new Listing</a>
             </div>
-
+            <div class="navbar-nav ms-auto">
+                <form class="d-flex" method="GET" action="/listings">
+                    <input class="form-control mr-sm-2 search-bar" type="search" name="Search"
+                        placeholder="Search Destination">
+                    <button class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit"><i
+                            class="fa-solid fa-magnifying-glass search-btn-glass"></i> <span
+                            class="search-btn-text">Search</span></button>
+                </form>
+            </div>
             <div class="navbar-nav ms-auto">
                 <form class="d-flex gap-3 justify-content-center align-items-center" role="search">
                     <a class="nav-link rounded-pill airbnb" href="/">Airbnb your home</a>
