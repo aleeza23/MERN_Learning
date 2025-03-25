@@ -14,6 +14,7 @@ const reviewsRouter = require("./routes/review.js")
 const userRouter = require("./routes/user.js")
 
 const session = require("express-session")
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 
 const passport = require("passport");
@@ -46,9 +47,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 app.engine('ejs', ejsMate);
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SECRET
+    },
+    touchAfter: 24 * 3600,
+})
 
 const sessionOptions = {
-    secret: "mysecretsuperkey",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
