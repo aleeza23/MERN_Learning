@@ -20,16 +20,19 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local")
 const User = require("./models/user.js")
 
+// const mongoUrl = 'mongodb://127.0.0.1:27017/wanderlust'
+const dbUrl = process.env.ATLASDB_URL
 
 //SETUP MONGOOSE
-const main = async () => {
-    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
-}
-main().then((res) => {
-    console.log("Connected to DB!");
+main().then(() => {
+    console.log("connected to DB");
 }).catch((err) => {
     console.log(err);
-})
+});
+
+async function main() {
+    await mongoose.connect(dbUrl);
+}
 
 // STATIC FILES FROM 'PUBLIC' DIRECTORY
 app.use(express.static(path.join(__dirname, 'public')));
